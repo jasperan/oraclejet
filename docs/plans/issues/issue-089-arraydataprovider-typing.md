@@ -40,11 +40,20 @@ Success means the repro compiles cleanly with no `prototype` mismatch.
 
 ## Current investigation note
 
-A direct scratch-project repro against the current `20.0.0` package compiled cleanly, even with `jest@29.2.0` installed. That suggests one of 3 things:
+A direct scratch-project repro against the current `20.0.0` package compiled cleanly, even with `jest@29.2.0` installed. That suggested one of 3 things:
 
 1. the issue is already fixed in current JET,
 2. the failure depends on older CLI-generated template code, or
 3. the failure depends on a narrower `@types/node` / TS version combination than the first scratch repro used.
+
+A follow-up matrix against packaged `20.0.0` found real type-environment sensitivity, but not yet the exact reported `prototype` mismatch:
+
+- `typescript@4.8.4` + `@types/node@18.7.0` passed
+- `typescript@4.8.4` + `@types/node@18.8.0` passed
+- `typescript@4.8.4` + `@types/node@18.11.0` failed with an `AbortSignal` duplicate declaration
+- `typescript@4.9.5` and `5.0.4` failed across the tested `@types/node` variants for the same `AbortSignal` conflict when `skipLibCheck` was disabled
+
+So this looks more like an older-toolchain compatibility pocket than a current unconditional package typing bug.
 
 ## pi-autoresearch
 
