@@ -1,0 +1,16 @@
+.worktrees/
+.agents/
+.claude/
+.crush/
+.openhands/
+.serena/
+.pi/
+.playwright-mcp/
+dogfood-output/
+docs/plans/
+content/
+task_plan.md
+findings.md
+progress.md
+node_modules/
+package-lock.json
