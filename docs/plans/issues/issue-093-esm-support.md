@@ -16,14 +16,21 @@ The pushed branch makes the shipped `debug_esm` tree self-contained enough to lo
 
 ## Validation
 
-`node --no-warnings scripts/repros/issue-093-esm-imports.mjs`
+- `node --no-warnings scripts/repros/issue-093-esm-imports.mjs`
+- `./autoresearch.sh`
 
-The repro imports and lightly exercises:
-- `ojlogger`
-- `ojeventtarget`
-- `ojkeyset`
-- `ojconverter-nativenumber`
-- `ojarraydataprovider`
+The installed-package benchmark now covers 13 checks across:
+- logging
+- event mixins
+- key sets
+- number conversion
+- array data providers
+- locale switching
+- translations
+- local-date conversion
+- sync and async validators
+- URL adapters
+- tree data providers
 
 ## Current status
 
@@ -35,3 +42,4 @@ The repro imports and lightly exercises:
 A second commit on the branch adds generated ESM locale shims and rewires `ojconfig.setLocale()` so representative locale switches (`fr`, `de`) work under the native ESM smoke test too.
 
 A third commit adds package-level `exports` entries so installed-package subpath imports like `@oracle/oraclejet/ojkeyset` and `@oracle/oraclejet/ojconfig` work under the representative Node ESM smoke test as well.
+ckage subpath imports like `@oracle/oraclejet/ojkeyset` and `@oracle/oraclejet/ojconfig` work under the representative Node ESM smoke test as well.
