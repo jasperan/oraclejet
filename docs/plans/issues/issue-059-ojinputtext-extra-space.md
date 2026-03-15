@@ -32,4 +32,9 @@ At minimum, run a targeted repro that prints the resulting `aria-describedby` st
 
 ## pi-autoresearch
 
-**Probably not.** The candidate fix is already narrow. TDD plus a small repro should be faster.
+**Used successfully.** A jsdom-based repro exercised the real `_AppendInputHelper()` method and made the whitespace bug deterministic enough for a short autoresearch loop.
+
+## Current status
+
+- Branch pushed: `issue-59-describedby-trim`
+- Fork URL: `https://github.com/jasperan/oraclejet/tree/issue-59-describedby-trim`
