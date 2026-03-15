@@ -33,3 +33,5 @@ The repro imports and lightly exercises:
 ## Follow-up completed
 
 A second commit on the branch adds generated ESM locale shims and rewires `ojconfig.setLocale()` so representative locale switches (`fr`, `de`) work under the native ESM smoke test too.
+
+A third commit adds package-level `exports` entries so installed-package subpath imports like `@oracle/oraclejet/ojkeyset` and `@oracle/oraclejet/ojconfig` work under the representative Node ESM smoke test as well.
