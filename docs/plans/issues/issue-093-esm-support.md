@@ -16,22 +16,25 @@ The pushed branch makes the shipped `debug_esm` tree self-contained enough to lo
 - added package-level `exports` so installed-package subpath imports resolve to the ESM runtime and type declarations
 - guarded `ojthemeutils.parseJSONFromFontFamily()` for non-browser hosts so `LocalDateConverter` can fall back to defaults instead of crashing on `window`
 - generated ESM `localeElements` and `timezoneData` shims and rewired `ojlocaledata.js`, `ojtimezonedata.js`, and `ojconfig.setLocale()` to them so locale-data and timezone-dependent package imports work under native ESM too
+- fixed legacy `oj` alias references in `ojconverter-number.js` and `ojconverter-datetime.js` so the older number/date converter stack and date validators import cleanly under installed-package ESM checks
 
 ## Validation
 
 - `node --no-warnings scripts/repros/issue-093-esm-imports.mjs`
 - `./autoresearch.sh`
 
-The installed-package benchmark now covers 16 checks across:
+The installed-package benchmark now covers 20 checks across:
 - logging
 - event mixins
 - key sets
-- number conversion
+- native and legacy number conversion
+- native and legacy datetime conversion
 - array data providers
 - locale switching
 - translations
 - local-date conversion
 - sync and async validators
+- date restriction and date-time range validators
 - URL adapters
 - tree data providers
 - locale data
@@ -43,10 +46,10 @@ The installed-package benchmark now covers 16 checks across:
 - Branch pushed: `issue-93-esm-support`
 - Fork URL: `https://github.com/jasperan/oraclejet/tree/issue-93-esm-support`
 
-## Follow-up completed
+## Commit progression
 
-A second commit on the branch added generated ESM locale shims and rewired `ojconfig.setLocale()` so representative locale switches (`fr`, `de`) work under the native ESM smoke test too.
-
-A third commit added package-level `exports` entries so installed-package subpath imports like `@oracle/oraclejet/ojkeyset` and `@oracle/oraclejet/ojconfig` work under the representative Node ESM smoke test as well.
-
-A fourth commit added generated ESM locale-elements and timezone-data shims so `ojlocaledata`, `ojtimeutils`, and `ojtimezoneutils` also work under the installed-package ESM benchmark.
+1. self-contained `debug_esm` imports
+2. translation shims + `ojconfig.setLocale()` support
+3. package-level ESM subpath exports
+4. locale-elements + timezone-data ESM shims
+5. legacy converter alias cleanup for date-validator coverage
