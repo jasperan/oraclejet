@@ -38,6 +38,14 @@ Success means the repro compiles cleanly with no `prototype` mismatch.
 - Does the issue depend on a specific TS or Jest type package interaction?
 - Is the failure caused by `ArrayDataProvider` declarations, or by how `DataProvider` is re-exported/imported?
 
+## Current investigation note
+
+A direct scratch-project repro against the current `20.0.0` package compiled cleanly, even with `jest@29.2.0` installed. That suggests one of 3 things:
+
+1. the issue is already fixed in current JET,
+2. the failure depends on older CLI-generated template code, or
+3. the failure depends on a narrower `@types/node` / TS version combination than the first scratch repro used.
+
 ## pi-autoresearch
 
-**Yes.** This has a crisp pass/fail command, small file scope, and likely multiple declaration-shape experiments worth trying.
+**Maybe later.** It is still a good experiment target if we can pin down the exact older toolchain combination, but it is no longer the best first issue now that #70 has a cleaner live repro.

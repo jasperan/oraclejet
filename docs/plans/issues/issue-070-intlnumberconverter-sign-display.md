@@ -39,4 +39,9 @@ Expected success condition: JET output matches `Intl.NumberFormat` for the repro
 
 ## pi-autoresearch
 
-**Maybe.** It has a deterministic repro, but the fix surface looks narrow enough that normal TDD may be faster than a long experiment loop.
+**Used successfully.** The issue turned out to have a deterministic repro and a narrow winning change: thread `signDisplay` through the resolved option shape, native formatter options, and public TS option types.
+
+## Current status
+
+- Branch pushed: `issue-70-sign-display`
+- Fork URL: `https://github.com/jasperan/oraclejet/tree/issue-70-sign-display`
