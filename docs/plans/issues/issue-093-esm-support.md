@@ -30,6 +30,6 @@ The repro imports and lightly exercises:
 - Branch pushed: `issue-93-esm-support`
 - Fork URL: `https://github.com/jasperan/oraclejet/tree/issue-93-esm-support`
 
-## Deferred follow-up
+## Follow-up completed
 
-`Config.setLocale()` still relies on AMD-style locale-bundle loading semantics. That looks fixable, but it is a second step beyond the initial self-contained ESM bootstrap.
+A second commit on the branch adds generated ESM locale shims and rewires `ojconfig.setLocale()` so representative locale switches (`fr`, `de`) work under the native ESM smoke test too.
